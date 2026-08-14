@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>B2B Trade Platform — Pre-Meeting Brief</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  * { margin: 0; }
+  img, picture, video, canvas, svg { display: block; max-width: 100%; }
+  input, button, textarea, select { font: inherit; }
+  p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
+
+  :root {
+    --ink: #12181C;
+    --paper: #F7F5F0;
+    --paper-2: #EFEBE2;
+    --seal: #1F5C4A;
+    --seal-soft: #2E7A63;
+    --stamp: #A33B2A;
+    --brass: #8A7B4F;
+    --muted: #5E6560;
+    --rule: #D6D0C4;
+    --shadow: rgba(18, 24, 28, 0.07);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #E8E4DA;
+      --paper: #14171A;
+      --paper-2: #1C2124;
+      --seal: #6FBFA3;
+      --seal-soft: #4E9C82;
+      --stamp: #D8705C;
+      --brass: #B5A272;
+      --muted: #97A09A;
+      --rule: #2E3438;
+      --shadow: rgba(0, 0, 0, 0.4);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink: #E8E4DA;
+    --paper: #14171A;
+    --paper-2: #1C2124;
+    --seal: #6FBFA3;
+    --seal-soft: #4E9C82;
+    --stamp: #D8705C;
+    --brass: #B5A272;
+    --muted: #97A09A;
+    --rule: #2E3438;
+    --shadow: rgba(0, 0, 0, 0.4);
+  }
+  :root[data-theme="light"] {
+    --ink: #12181C;
+    --paper: #F7F5F0;
+    --paper-2: #EFEBE2;
+    --seal: #1F5C4A;
+    --seal-soft: #2E7A63;
+    --stamp: #A33B2A;
+    --brass: #8A7B4F;
+    --muted: #5E6560;
+    --rule: #D6D0C4;
+    --shadow: rgba(18, 24, 28, 0.07);
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    font-size: 17px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px 120px;
+  }
+
+  /* ---- masthead ---- */
+  header.masthead {
+    padding: 64px 0 28px;
+    border-bottom: 2px solid var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .eyebrow {
+    font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--brass);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+  }
+  h1 {
+    font-family: "Helvetica Neue", "Arial Narrow", Inter, system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(30px, 5vw, 50px);
+    line-height: 1.04;
+    letter-spacing: -0.022em;
+    text-wrap: balance;
+    max-width: 20ch;
+  }
+  .standfirst {
+    max-width: 62ch;
+    color: var(--muted);
+    font-size: 18px;
+  }
+  .standfirst strong { color: var(--ink); font-weight: 600; }
+
+  /* ---- verdict strip ---- */
+  .verdicts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 40px 0 8px;
+  }
+  .verdict {
+    background: var(--paper);
+    padding: 18px 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .verdict .k {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .verdict .v {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+  .verdict .n { font-size: 13.5px; color: var(--muted); line-height: 1.4; }
+  .v.go { color: var(--seal); }
+  .v.stop { color: var(--stamp); }
+
+  /* ---- sections ---- */
+  section { margin-top: 68px; scroll-margin-top: 20px; }
+  .sec-head {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 20px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 12px;
+    margin-bottom: 28px;
+  }
+  .sec-head .tag {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--brass);
+    padding-top: 6px;
+  }
+  h2 {
+    font-family: "Helvetica Neue", "Arial Narrow", Inter, system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(23px, 3.2vw, 31px);
+    letter-spacing: -0.018em;
+    line-height: 1.14;
+    text-wrap: balance;
+  }
+  h3 {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: -0.008em;
+    margin-bottom: 8px;
+  }
+  .body { display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 20px; }
+  .body > .rail {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10.5px;
+    line-height: 1.5;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .col { display: flex; flex-direction: column; gap: 16px; max-width: 68ch; }
+  .col.wide { max-width: none; }
+  p { max-width: 68ch; }
+  strong { font-weight: 600; }
+  em { font-style: italic; color: var(--ink); }
+
+  ul, ol { display: flex; flex-direction: column; gap: 9px; padding-left: 20px; max-width: 68ch; }
+  li { padding-left: 3px; }
+  li::marker { color: var(--brass); }
+
+  /* ---- callouts ---- */
+  .note {
+    border-left: 3px solid var(--seal);
+    background: var(--paper-2);
+    padding: 15px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .note.risk { border-left-color: var(--stamp); }
+  .note .lbl {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--seal);
+  }
+  .note.risk .lbl { color: var(--stamp); }
+  .note p { margin: 0; max-width: 64ch; }
+
+  /* ---- tables ---- */
+  .tw { overflow-x: auto; border: 1px solid var(--rule); }
+  table { border-collapse: collapse; width: 100%; font-size: 14.5px; min-width: 560px; }
+  th {
+    text-align: left;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--ink);
+    background: var(--paper-2);
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td.num {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .pill {
+    display: inline-block;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 10px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid currentColor;
+    white-space: nowrap;
+  }
+  .pill.hi { color: var(--stamp); }
+  .pill.md { color: var(--brass); }
+  .pill.lo { color: var(--seal); }
+
+  /* ---- split cards ---- */
+  .split { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .split > div { background: var(--paper); padding: 18px; display: flex; flex-direction: column; gap: 9px; }
+  .split h3 { margin: 0; }
+  .split p { font-size: 15px; margin: 0; }
+  .split ul { font-size: 15px; gap: 6px; }
+
+  /* ---- questions ---- */
+  .q { display: flex; flex-direction: column; gap: 6px; padding: 15px 0; border-bottom: 1px solid var(--rule); }
+  .q:last-child { border-bottom: none; }
+  .q .qt { font-weight: 600; font-size: 16.5px; }
+  .q .qw { font-size: 14.5px; color: var(--muted); max-width: 66ch; }
+  .q .qw::before { content: "Why it matters — "; font-family: ui-monospace, Menlo, monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brass); }
+
+  code {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.88em;
+    background: var(--paper-2);
+    padding: 1px 5px;
+    border: 1px solid var(--rule);
+  }
+  a { color: var(--seal); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--seal); outline-offset: 2px; }
+
+  footer {
+    margin-top: 80px;
+    padding-top: 20px;
+    border-top: 2px solid var(--ink);
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+  }
+
+  @media (max-width: 720px) {
+    .sec-head, .body { grid-template-columns: 1fr; gap: 10px; }
+    .body > .rail { color: var(--brass); }
+    body { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="eyebrow">
+    <span>Pre-meeting brief</span><span>Morocco B2B trade platform</span><span>7 Aug 2026</span>
+  </div>
+  <h1>The idea is sound. Three of the assumptions under it are not.</h1>
+  <p class="standfirst">Your friend found a real gap: Morocco's B2B directories are <strong>lead-generation businesses wearing a directory's clothes</strong>, and none of them referee the transaction. That's the opening. But the plan attached to it — WordPress frontend, aged domain, SEO-first, six months to launch, exit in five years — mixes one good instinct with several that will cost you the window. This is what to argue about over coffee.</p>
+</header>
+
+<div class="verdicts">
+  <div class="verdict"><span class="k">Market gap</span><span class="v go">Real</span><span class="n">Incumbents monetize visibility, not outcomes. Nobody guarantees the deal.</span></div>
+  <div class="verdict"><span class="k">SEO-first strategy</span><span class="v go">Correct</span><span class="n">Right channel for this market. Wrong tooling proposed to deliver it.</span></div>
+  <div class="verdict"><span class="k">WordPress frontend</span><span class="v stop">Reject</span><span class="n">SEO argument is a decade out of date. Costs you the moat.</span></div>
+  <div class="verdict"><span class="k">Aged domain buy</span><span class="v stop">Defer</span><span class="n">Cheap lottery ticket sold as strategy. Not a month-one decision.</span></div>
+  <div class="verdict"><span class="k">6-month estimate</span><span class="v stop">Optimistic</span><span class="n">Only if you cut scope to one vertical and one flow.</span></div>
+  <div class="verdict"><span class="k">Build-then-fund</span><span class="v stop">Backwards</span><span class="n">Morocco's programs fund teams at idea stage. You're leaving money on the table.</span></div>
+</div>
+
+<section>
+  <div class="sec-head"><span class="tag">01 / Market</span><h2>What the incumbents actually sell — and the gap that leaves</h2></div>
+  <div class="body">
+    <div class="rail">Competitive read</div>
+    <div class="col">
+      <p>Both reference sites are the same business in different packaging. Kerix lists Moroccan companies and sells <em>premium placement</em> plus exportable contact files. Telecontact is the Moroccan Yellow Pages — free basic listings, paid visibility boosts, analytics upsell. Procurement.ma and Maroc Business sit adjacent, aggregating tenders and purchase requests.</p>
+      <p>Every one of them monetizes <strong>the seller's hope of being found</strong>. The seller pays whether or not a deal happens. The buyer pays nothing and is guaranteed nothing. Nobody in this market is paid for the transaction succeeding.</p>
+      <div class="note">
+        <span class="lbl">The actual insight</span>
+        <p>This isn't an untapped market — it's a <em>mis-monetized</em> one. The directories are lead-gen businesses that happen to look like infrastructure. The gap is the referee layer: verification, escrow, dispute resolution, and a reputation record that follows a company across deals. That's a different product with a different buyer and a different revenue line.</p>
+      </div>
+      <p>Worth naming plainly: "untalked-about" and "fresh" usually mean one of two things — nobody found it, or people tried and the economics didn't work. Before the next meeting, one of you should find out which. If a Moroccan B2B escrow or verified-supplier play has already died, the post-mortem is the most valuable document you'll read.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="tag">02 / Model</span><h2>The PropFirmMatch comparison breaks where it matters most</h2></div>
+  <div class="body">
+    <div class="rail">Analogy audit</div>
+    <div class="col">
+      <p>PropFirmMatch is a comparison and affiliate site. It ranks prop trading firms, takes commission on referred signups, and pays content creators ~10% to send traffic. It is a <strong>media business</strong>, not a referee. It never touches the money between the two parties and carries no liability if a firm behaves badly.</p>
+      <p>That distinction decides your entire architecture, so settle it at the meeting before anything else.</p>
+      <div class="split">
+        <div>
+          <h3>Model A — Comparison &amp; lead-gen</h3>
+          <p><strong>What PropFirmMatch actually is.</strong> Rank suppliers, sell qualified leads or take referral commission.</p>
+          <ul>
+            <li>Buildable in 6 months, plausibly less</li>
+            <li>SEO is genuinely the whole business</li>
+            <li>No regulatory exposure</li>
+            <li>Weak moat — copyable in a quarter</li>
+            <li>You compete <em>directly</em> with Kerix on their revenue line</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Model B — Referee &amp; escrow</h3>
+          <p><strong>What "middleman and referee" means literally.</strong> Verify both parties, hold funds, release on delivery, arbitrate disputes.</p>
+          <ul>
+            <li>12–18 months realistically, not 6</li>
+            <li>Handling third-party funds in Morocco is regulated — Bank Al-Maghrib territory</li>
+            <li>Needs a licensed payment partner (CMI, or a PSP) or a trust-account structure</li>
+            <li>Strong moat: transaction history compounds</li>
+            <li>This is the fundable, sellable version</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note risk">
+        <span class="lbl">Meeting decision — do not leave without it</span>
+        <p>Ask him directly: <em>when you say referee, do we hold the money or not?</em> If yes, legal and payment-partner research starts this month and the timeline doubles. If no, you're building a better Kerix and should say so out loud — that's a viable business, but it isn't a five-year exit at a price worth waiting for.</p>
+      </div>
+      <p>The pragmatic path is Model A as the wedge and Model B as the destination: launch as verified discovery and RFQ routing, earn the traffic and the supplier relationships, then add escrow once you have deal flow to justify the licensing work. That sequencing also matches how funding rounds want to see traction.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="tag">03 / Stack</span><h2>WordPress for SEO: the argument that was true in 2014</h2></div>
+  <div class="body">
+    <div class="rail">Technical<br>disagreement</div>
+    <div class="col">
+      <p>This is where I'd push back hardest, and where you have the strongest evidence on your side. "We need WordPress because we need SEO" was reasonable advice a decade ago. Today it's inherited folklore.</p>
+      <p>Google renders JavaScript. Next.js, Astro, SvelteKit and Nuxt all server-render or statically generate HTML — the crawler receives complete markup, exactly as it does from WordPress. WordPress's real SEO advantage was never the platform; it was Yoast making metadata editable by non-engineers. You can reproduce that with a CMS field and a sitemap route in about two days.</p>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Cost of the WordPress frontend</th><th>Consequence</th><th>Severity</th></tr></thead>
+          <tbody>
+            <tr><td>Two runtimes, two languages, two deploy pipelines</td><td>PHP for pages, your real stack for the app. Every feature crossing the boundary is built twice.</td><td><span class="pill hi">High</span></td></tr>
+            <tr><td>Programmatic SEO at scale</td><td>Your growth engine is tens of thousands of generated pages (<code>/fournisseurs/{secteur}/{ville}</code>). WP does this badly and slowly; SSG frameworks do it natively.</td><td><span class="pill hi">High</span></td></tr>
+            <tr><td>Core Web Vitals</td><td>A plugin-laden WP install loses to a statically generated page on every field metric. CWV is a ranking input — the SEO argument turns on itself.</td><td><span class="pill md">Medium</span></td></tr>
+            <tr><td>Attack surface</td><td>You plan to hold verified company records and possibly funds. WordPress plugin CVEs are the single most exploited vector on the web.</td><td><span class="pill hi">High</span></td></tr>
+            <tr><td>Auth &amp; session split</td><td>Logged-in state across two systems means SSO glue, duplicated sessions, and a permanent bug source.</td><td><span class="pill md">Medium</span></td></tr>
+            <tr><td>Multilingual FR / AR / EN</td><td>WPML is a known performance and complexity tax. Framework i18n routing is cleaner and free.</td><td><span class="pill md">Medium</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The compromise worth offering, if he holds firm: <strong>headless WordPress purely as the editorial CMS</strong> — blog, guides, landing copy — with the frontend rendered by your framework and the marketplace living in your own database. He keeps the editing experience he trusts, you keep one frontend and one performance profile. Concede the CMS, not the frontend.</p>
+      <div class="note">
+        <span class="lbl">How to run this argument</span>
+        <p>Don't argue theory. Pull up any Next.js site in a browser, view source, and show him the fully rendered HTML in the response. The claim collapses in about thirty seconds, and it collapses without anyone having to be wrong out loud.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="tag">04 / SEO</span><h2>Right channel, wrong first move</h2></div>
+  <div class="body">
+    <div class="rail">Growth</div>
+    <div class="col">
+      <p>His SEO instinct is correct and it's the strongest strategic idea in the plan. Moroccan B2B buyers search in French, intent is high, and Kerix's traffic proves the demand exists. Paid acquisition in this market is expensive relative to deal size. SEO is the right engine.</p>
+      <p>The aged-domain plan is the weak part. Buying a domain with high DR and clean backlinks is a real tactic, but it is a <em>lottery ticket</em>, not a strategy, and it comes with specific failure modes:</p>
+      <ul>
+        <li><strong>Topical mismatch.</strong> A domain whose backlinks point at an unrelated industry transfers far less authority than the DR number suggests. Relevance is the multiplier.</li>
+        <li><strong>Hidden penalties.</strong> Manual actions don't show in third-party metrics. You inherit them silently.</li>
+        <li><strong>DR is a vendor score.</strong> Ahrefs and Moz invented it. Google doesn't use it. It's directional, not predictive.</li>
+        <li><strong>Reset risk.</strong> A wholesale change of topic and content can flush accumulated trust anyway.</li>
+      </ul>
+      <p>Budget a few hundred dollars, buy one if a genuinely relevant Moroccan or francophone B2B domain surfaces, and treat any resulting head start as a bonus. Don't let the search for it block month one.</p>
+      <p>What actually wins this market is the thing incumbents structurally can't copy: <strong>programmatic pages backed by proprietary data.</strong> Kerix ranks on listings. You rank on listings <em>plus</em> verification status, response rates, completed-transaction counts, and sector pricing benchmarks. Every closed deal generates content nobody else can publish. That's a compounding moat, and it's the same asset that makes escrow possible later. It's also the single best reason not to put WordPress in the critical path.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="tag">05 / Funding</span><h2>Build-then-fund is backwards for where you are</h2></div>
+  <div class="body">
+    <div class="rail">Sequencing</div>
+    <div class="col">
+      <p>The plan is: build quietly, get funding through a country program, incorporate, scale, exit around year five. The sequencing works against you, because Morocco's current programs are designed to fund exactly the stage you're at right now.</p>
+      <p>As of 2026, Tamwilcom's <strong>Startup Venture Building</strong> program is deploying roughly MAD 700M (~$69M) across 800 startups over three years — founder stipends, prototype funding, loans up to MAD 2M. Separately, the Mohammed VI Investment Fund with CDG and the Ministry of Digital Transition has shortlisted managers to deploy about MAD 2.5B (~$270M) into early-stage companies under Digital Morocco 2030. These are ideation-and-prototype stage instruments, not growth rounds.</p>
+      <div class="note risk">
+        <span class="lbl">The cost of waiting</span>
+        <p>Building for six months unfunded means six months of runway from your own pockets, and you arrive at the program with a finished product asking for scale money — competing against companies asking for build money with a better story about what the funding unlocks. Applying at prototype stage is cheaper and strictly more likely to land.</p>
+      </div>
+      <p>There's a structural problem too: most of these instruments require a registered Moroccan entity. "No business until funding" and "get funding from a country program" are in direct conflict. Registering an SARL is inexpensive and fast; delaying it doesn't preserve optionality, it just makes you ineligible.</p>
+      <p>On the exit: a five-year horizon is a reasonable ambition but a bad plan, mostly because the Moroccan acquirer pool for a B2B marketplace is thin. Realistic buyers are regional players, a telecom or bank wanting SME distribution, or a pan-African expansion play. Each wants different things — one wants transaction volume, another wants verified-supplier data, a third wants the audience. That choice shapes what you instrument from day one, so it's worth a conversation now, not in year four.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="tag">06 / Scope</span><h2>What six months actually buys</h2></div>
+  <div class="body">
+    <div class="rail">Estimate<br>audit</div>
+    <div class="col">
+      <p>He's right that this isn't a weekend build, and right that it demands real engineering. But "at least 6 months" is doing a lot of work in that sentence. It's achievable for Model A in <em>one vertical</em>. It is not achievable for a full escrow platform with dispute resolution, KYB verification, and multilingual support.</p>
+      <p>Here's the honest decomposition — assume two people, part-time-to-full-time:</p>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Component</th><th>Realistic effort</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Supplier/buyer profiles, auth, roles</td><td class="num">3–4 wks</td><td>Standard. Don't gold-plate it.</td></tr>
+            <tr><td>Search, taxonomy, sector/city facets</td><td class="num">4–6 wks</td><td>The taxonomy is the hard part, not the search.</td></tr>
+            <tr><td>Programmatic SEO page generation</td><td class="num">3–4 wks</td><td>Your growth engine. Build early, iterate constantly.</td></tr>
+            <tr><td>RFQ / quote request flow</td><td class="num">4–5 wks</td><td>Core loop. Where the product is actually won.</td></tr>
+            <tr><td>Verification &amp; trust layer (KYB, ICE lookup)</td><td class="num">4–8 wks</td><td>Wide range because manual-first is 4, automated is 8+.</td></tr>
+            <tr><td>Reviews &amp; reputation</td><td class="num">3–4 wks</td><td>Moderation and abuse handling is most of it.</td></tr>
+            <tr><td>Admin &amp; moderation tooling</td><td class="num">3–4 wks</td><td>Always underestimated. You'll live in this daily.</td></tr>
+            <tr><td>FR / AR / EN including RTL</td><td class="num">2–4 wks</td><td>RTL is not a translation task — it's a layout task.</td></tr>
+            <tr><td><strong>Escrow &amp; disputes</strong> (Model B only)</td><td class="num">10–16 wks</td><td>Plus legal, licensing, and a payment partner in parallel.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Model A lands around five to seven months of real work — his estimate is defensible. Model B is a year-plus. Both of you should agree on which number you're quoting before either of you commits to it in front of anyone else.</p>
+      <div class="note">
+        <span class="lbl">The cold-start problem nobody's costed</span>
+        <p>A marketplace with no suppliers is worthless to buyers, and vice versa. Kerix has 150,000 listings and a decade of head start. Your first hundred verified suppliers will come from phone calls and in-person visits, not from the product. That's months of unglamorous fieldwork that doesn't appear anywhere in an engineering estimate — and it's the single most common reason marketplaces like this die. Whoever isn't writing the escrow logic should be doing this.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="tag">07 / Split</span><h2>Dividing the work without dividing the company badly</h2></div>
+  <div class="body">
+    <div class="rail">Roles</div>
+    <div class="col">
+      <p>You asked how to frame the skills conversation. Don't split by technology — "you do frontend, I do backend" produces two people who each understand half a product. Split by <strong>outcome ownership</strong>, where each person owns a metric end to end.</p>
+      <div class="split">
+        <div>
+          <h3>Owner — Product &amp; platform</h3>
+          <ul>
+            <li>Data model, taxonomy, search</li>
+            <li>Transaction and RFQ flows</li>
+            <li>Verification and trust systems</li>
+            <li>Infrastructure, security, deploys</li>
+          </ul>
+          <p><strong>Owns:</strong> does the core loop work and stay up.</p>
+        </div>
+        <div>
+          <h3>Owner — Growth &amp; supply</h3>
+          <ul>
+            <li>SEO architecture and content system</li>
+            <li>Supplier acquisition and onboarding</li>
+            <li>Funding applications, program relationships</li>
+            <li>Pricing and monetization</li>
+          </ul>
+          <p><strong>Owns:</strong> qualified traffic in, verified suppliers on.</p>
+        </div>
+      </div>
+      <p>Both people write code. Both talk to users. The split is about who is accountable when a number goes the wrong way — not about who is allowed to touch which files.</p>
+      <div class="note risk">
+        <span class="lbl">Say this at the meeting, awkward as it is</span>
+        <p>Equity, vesting, and what happens if one of you leaves. It's his idea and your execution — that tension resolves cheaply now and expensively later. A four-year vest with a one-year cliff is the standard answer and exists precisely so neither of you has to trust the other's future enthusiasm. Also agree who is CEO. Two-founder companies with no decision-maker stall on exactly the kind of disagreement you're about to have over WordPress.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="tag">08 / Agenda</span><h2>Questions to bring to the coffee meeting</h2></div>
+  <div class="body">
+    <div class="rail">Take these<br>verbatim</div>
+    <div class="col wide">
+      <div class="q"><span class="qt">Do we hold the money, yes or no?</span><span class="qw">It's the fork between a 6-month build and an 18-month regulated one. Everything downstream depends on this answer.</span></div>
+      <div class="q"><span class="qt">Which single vertical do we launch in?</span><span class="qw">"Moroccan B2B" is not a launch scope. Construction materials, industrial supply, agri-food, textiles — pick one where you can personally reach fifty suppliers.</span></div>
+      <div class="q"><span class="qt">Who pays us, and for what outcome?</span><span class="qw">Supplier subscription is the incumbent model and you'd be competing on their turf. Transaction fee, verification fee, and buyer-side procurement SaaS are all different companies.</span></div>
+      <div class="q"><span class="qt">How do we get the first fifty suppliers?</span><span class="qw">If the honest answer is "SEO," the plan has a hole in it. Supply comes before search traffic, always.</span></div>
+      <div class="q"><span class="qt">Has someone tried this in Morocco already?</span><span class="qw">"Untalked-about" needs verification. Procurement.ma and Maroc Business are already adjacent to this space.</span></div>
+      <div class="q"><span class="qt">Can you show me why WordPress is required, specifically?</span><span class="qw">Phrased as a question, not a challenge. If the reason is "Yoast and editing comfort," headless WP solves it. If it's "Google needs HTML," the premise is simply outdated.</span></div>
+      <div class="q"><span class="qt">Why wait for funding to register the entity?</span><span class="qw">Most Moroccan programs require a registered company. The current plan may be self-excluding from the money it's built around.</span></div>
+      <div class="q"><span class="qt">Who is the eventual buyer, and what would they be buying?</span><span class="qw">Transaction volume, supplier data, and audience are three different assets. It determines what you instrument from day one.</span></div>
+      <div class="q"><span class="qt">Equity, vesting, roles, and who decides when we disagree?</span><span class="qw">Cheap now. Expensive at month eighteen. Non-negotiable before either of you writes production code.</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="tag">09 / Next 30 days</span><h2>What to do before writing any product code</h2></div>
+  <div class="body">
+    <div class="rail">Concrete</div>
+    <div class="col">
+      <ol>
+        <li><strong>Pick the vertical and call twenty suppliers in it.</strong> Not a survey — actual conversations. Ask how they currently find buyers and what a lost deal costs them. This validates or kills the whole thesis for the price of your time.</li>
+        <li><strong>Call ten buyers.</strong> Ask what goes wrong when they source from a new supplier. If "I got burned and had no recourse" comes up repeatedly, the referee model is real and you have your positioning line.</li>
+        <li><strong>Settle the escrow question,</strong> and if the answer is yes, book a call with a payments lawyer and one PSP. One week of research now saves a year of wrong architecture.</li>
+        <li><strong>Register the entity</strong> and check the eligibility criteria for the Tamwilcom program against your actual situation.</li>
+        <li><strong>Resolve the stack disagreement</strong> with the view-source demo, and write the decision down.</li>
+        <li><strong>Write a one-page memo together</strong> — model, vertical, monetization, who does what, equity. If you can't agree on one page, you won't agree on a codebase.</li>
+      </ol>
+      <div class="note">
+        <span class="lbl">Bottom line</span>
+        <p>The market read is genuinely good and worth pursuing. Every serious risk in this plan is a <em>sequencing</em> risk, not an idea risk: building before validating, waiting on funding you could apply for now, and locking in a stack decision on a premise that stopped being true years ago. Fix the order of operations and the rest is ordinary hard work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Prepared for the follow-up meeting</span><span>Sources: Kerix · Telecontact · PropFirmMatch · Tamwilcom · Wamda · Ecofin</span>
+</footer>
+
+</div>
+
+</body>
+</html>
